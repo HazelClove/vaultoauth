@@ -1,0 +1,57 @@
+{
+  "manifest_version": 3,
+  "name": "VaultOAuth",
+  "version": "1.1.0",
+  "description": "Minimal TOTP authenticator with screenshot QR scanning.",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting",
+    "tabs"
+  ],
+  "host_permissions": [
+    "<all_urls>",
+    "https://cdn.simpleicons.org/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "VaultOAuth",
+    "default_icon": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js",
+    "scripts": [
+      "lib/jsQR.js",
+      "lib/otpauth.min.js",
+      "background.js"
+    ]
+  },
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "lib/jsQR.js",
+        "lib/otpauth.min.js"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'; img-src 'self' https://cdn.simpleicons.org data:;"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "vaultoauth@extension"
+    }
+  }
+}
